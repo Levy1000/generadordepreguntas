@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Preguntas de Investigación</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f8fa;
+    color: #333;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h2 { text-align: center; color: #004080; }
+  select, button {
+    width: 100%; padding: 10px; margin: 10px 0;
+    border: 1px solid #ccc; border-radius: 8px;
+    font-size: 16px;
+  }
+  button {
+    background-color: #004080; color: white;
+    cursor: pointer; transition: 0.3s;
+  }
+  button:hover { background-color: #0066cc; }
+  #resultado {
+    background: #e8f4ff;
+    border-left: 5px solid #e3e4e6;
+    padding: 15px; margin-top: 20px;
+    border-radius: 8px; font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h2> Generador de Preguntas de Investigación</h2>
+
+<!-- 1. Tema general -->
+<label>Tema general: ¿En qué ámbito se ubica tu investigación?</label>
+<select id="tema">
+  <option value="">Seleccione...</option>
+  <option value="social">Social</option>
+  <option value="educativo">Educativo</option>
+  <option value="ambiental">Ambiental</option>
+  <option value="tecnológico">Tecnológico</option>
+  <option value="salud">Salud</option>
+</select>
+
+<!-- 2. Propósito -->
+<label>Propósito: ¿Qué deseas conocer o explicar? </label>
+<select id="proposito">
+  <option value="">Seleccione...</option>
+  <option value="identifica">Causas</option>
+  <option value="analiza">Impactos</option>
+  <option value="propone alternativas para mejorar">Propuestas de mejora</option>
+</select>
+
+<!-- 3. Objeto de estudio -->
+<label>Objeto de estudio: ¿Qué aspecto te interesa analizar?</label>
+<select id="objeto">
+  <option value="">Seleccione...</option>
+  <option value="las necesidades">Necesidades</option>
+  <option value="los factores que influyen en">Factores</option>
+  <option value="las estrategias implementadas para">Estrategias</option>
+  <option value="los resultados obtenidos en">Resultados</option>
+</select>
+
+<!-- 4. Sujetos o población -->
+<label>Sujetos o población: ¿A quién está dirigido? </label>
+<select id="poblacion">
+  <option value="">Seleccione...</option>
+  <option value="la comunidad">Comunidad</option>
+  <option value="los docentes">Docentes</option>
+  <option value="los estudiantes">Estudiantes</option>
+  <option value="las empresas">Empresas</option>
+  <option value="población indígena">Indigena</option>
+</select>
+
+<!-- Botón -->
+<button onclick="generarPregunta()">Generar pregunta de investigación</button>
+
+<!-- Resultado -->
+<div id="resultado"></div>
+
+<script>
+function generarPregunta() {
+  const tema = document.getElementById("tema").value;
+  const objeto = document.getElementById("objeto").value;
+  const poblacion = document.getElementById("poblacion").value;
+  const proposito = document.getElementById("proposito").value;
+  const resultado = document.getElementById("resultado");
+
+  if (!tema || !objeto || !poblacion || !proposito) {
+    resultado.innerHTML = "⚠️ Por favor selecciona una opción en cada campo.";
+    return;
+  }
+
+  const pregunta = `¿Cómo se ${proposito} ${objeto} en el contexto ${tema}, considerando a ${poblacion}?`;
+  resultado.innerHTML = `<strong>Pregunta generada:</strong><br>${pregunta}`;
+}
+</script>
+
+</body>
+</html>
